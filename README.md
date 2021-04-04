@@ -1,7 +1,6 @@
 # DjangoToDoApp
 ### Django Todo Project
 
-# GoCardless sample application
 
 ## Setup
 
