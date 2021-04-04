@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href={% static "css/index.css" %}>
+  <link rel="stylesheet" type="text/css" href="/jquery.datetimepicker.css"/ >
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+
+  </head>
+  <body style="background:#fcfcfc;">
+
+
+
+
+<div class="w3-bar w3-green w3-large">
+  <a href="{% url 'basic_app:todos' request.user.pk %}" class="w3-bar-item w3-button">Todo List</a>
+  <a href="{% url 'basic_app:addTodo' %}" class="w3-bar-item w3-button">Add Todo</a>
+  {% if user.is_authenticated %}
+  <a href="#" style="text-decoration:none" class="w3-bar-item">Welcome, {{user.username}}</a>
+  <a href="{% url 'basic_app:user_logout' %}" class="w3-bar-item w3-button w3-red w3-right">Logout</a>
+  {% endif %}
+</div>
+
+    <div class="w3-container">
+      <br>
+      {% block body_block %}
+
+      {% endblock %}
+    </div>
+
+
+  </body>
+</html>

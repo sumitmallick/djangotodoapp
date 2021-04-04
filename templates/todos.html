@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+
+{% if messages %}
+
+  {% for message in messages %}
+  <div class="w3-panel w3-pale-green w3-display-container">
+    <span onclick="this.parentElement.style.display='none'"
+    class="w3-button w3-large w3-display-topright">&times;</span>
+
+    <p>{{message}}</p>
+  </div>
+
+  {% endfor %}
+
+{% endif %}
+
+<table class="w3-table-all w3-bordered w3-card-4">
+  <tr>
+    <th>Title</th>
+    <th>Completed</th>
+    <th>Delete Todo</th>
+  </tr>
+{% for todo in data1 %}
+  {% if todo.completed %}
+    <tr class="w3-blue">
+      <td style="text-decoration:line-through"><a style="color:#ffffff; text-decoration:none;" href="{% url 'basic_app:edit' todo.pk %}">{{ todo.title }}</a></td>
+      <td><a style="color:#ffffff; text-decoration:none;" href="{% url 'basic_app:undone' todo.pk %}">Undone</a></td>
+      <td><a style="color:#ffffff; text-decoration:none;" href="{% url 'basic_app:delete' todo.pk %}">Delete</a></td>
+    </tr>
+    {% else %}
+    <tr>
+      <td><a style="color:#424242; text-decoration:none;" href="{% url 'basic_app:edit' todo.pk %}">{{ todo.title }}</a></td>
+      <td><a style="color:#424242; text-decoration:none;" href="{% url 'basic_app:done' todo.pk %}">Done</a></td>
+      <td><a style="color:#424242; text-decoration:none;" href="{% url 'basic_app:delete' todo.pk %}">Delete</a></td>
+    </tr>
+    {% endif %}
+{% endfor %}
+</table>
+
+{% endblock %}
